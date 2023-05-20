@@ -83,7 +83,7 @@ const GET_PAGE_DATA = gql`
   }
 `
 
-export async function getPageTemplateData(uri: string) {
+async function getPageTemplateData(uri: string) {
   const { data } = await apolloClient.query({
     query: GET_PAGE_DATA,
     variables: { uri },
