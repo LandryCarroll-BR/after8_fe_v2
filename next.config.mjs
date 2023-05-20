@@ -12,6 +12,24 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "after8stg.wpengine.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "after8.wpengine.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "after8music.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 }
