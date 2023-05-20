@@ -1,20 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
 import { gql } from "@apollo/client"
-import { AwardIcon } from "lucide-react"
 
-import { siteConfig } from "@/config/site"
 import { apolloClient } from "@/lib/apollo"
 import { buttonVariants } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 
-export const HOME_TEMPLATE_FIELDS = gql`
+const HOME_TEMPLATE_FIELDS = gql`
   fragment HomeTemplateFields on Template_Home {
     home {
       hero {
@@ -73,7 +65,7 @@ export const HOME_TEMPLATE_FIELDS = gql`
   }
 `
 
-export const GET_PAGE_DATA = gql`
+const GET_PAGE_DATA = gql`
   ${HOME_TEMPLATE_FIELDS}
 
   query getPageData($uri: String!) {
@@ -291,7 +283,10 @@ export default async function IndexPage() {
               {cta.heading}
             </h2>
 
-            <Link href={"#"} className={buttonVariants({ size: "2xl", variant: "outline" })}>
+            <Link
+              href={"#"}
+              className={buttonVariants({ size: "2xl", variant: "outline" })}
+            >
               {cta.button.title}
             </Link>
           </div>
