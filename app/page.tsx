@@ -1,80 +1,75 @@
 import Image from "next/image"
 import Link from "next/link"
-import { gql } from "@apollo/client"
 
-import { apolloClient } from "@/lib/apollo"
+import { fetchAPI } from "@/lib/api"
 import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 
-const HOME_TEMPLATE_FIELDS = gql`
-  fragment HomeTemplateFields on Template_Home {
-    home {
-      hero {
-        headingLine1
-        headingLine2
-        bgImageDesktop {
-          sourceUrl
-        }
-        bgImageMobile {
-          sourceUrl
-        }
-        blurb
-        cta {
-          title
-          url
-        }
+const HOME_TEMPLATE_FIELDS = `
+  home {
+    hero {
+      headingLine1
+      headingLine2
+      bgImageDesktop {
+        sourceUrl
       }
-      content1 {
-        blurb
-        heading
-        image1 {
-          sourceUrl
-        }
-        image2 {
-          sourceUrl
-        }
-        image3 {
-          sourceUrl
-        }
-        cta {
-          title
-          url
-        }
+      bgImageMobile {
+        sourceUrl
       }
-      awards {
-        body
-        fieldGroupName
-        heading
-        awardLogos {
-          image {
-            sourceUrl
-          }
-        }
+      blurb
+      cta {
+        title
+        url
+      }
+    }
+    content1 {
+      blurb
+      heading
+      image1 {
+        sourceUrl
+      }
+      image2 {
+        sourceUrl
+      }
+      image3 {
+        sourceUrl
       }
       cta {
-        heading
-        bgImage {
+        title
+        url
+      }
+    }
+    awards {
+      body
+      fieldGroupName
+      heading
+      awardLogos {
+        image {
           sourceUrl
         }
-        button {
-          title
-          url
-        }
+      }
+    }
+    cta {
+      heading
+      bgImage {
+        sourceUrl
+      }
+      button {
+        title
+        url
       }
     }
   }
 `
 
-const GET_PAGE_DATA = gql`
-  ${HOME_TEMPLATE_FIELDS}
-
+const GET_PAGE_DATA = `
   query getPageData($uri: String!) {
     nodeByUri(uri: $uri) {
       ... on Page {
         template {
           templateName
           ... on Template_Home {
-            ...HomeTemplateFields
+            ${HOME_TEMPLATE_FIELDS}
           }
         }
         content
@@ -84,8 +79,7 @@ const GET_PAGE_DATA = gql`
 `
 
 async function getPageTemplateData(uri: string) {
-  const { data } = await apolloClient.query({
-    query: GET_PAGE_DATA,
+  const { data } = await fetchAPI(GET_PAGE_DATA, {
     variables: { uri },
   })
   return data?.nodeByUri.template.home
@@ -247,14 +241,22 @@ export default async function IndexPage() {
               <p className="mr-auto">Check out our wedding profiles!</p>
               <div className="mr-auto flex flex-1 gap-5">
                 <Link
-                  href={"#"}
+                  href={
+                    "https://www.theknot.com/marketplace/after-8-band-new-orleans-la-661616"
+                  }
                   className={buttonVariants({ variant: "secondary" })}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   The Knot
                 </Link>
                 <Link
-                  href={"#"}
+                  href={
+                    "https://www.weddingwire.com/biz/after-8-band-baton-rouge/5a73f78cef5afceb.html"
+                  }
                   className={buttonVariants({ variant: "secondary" })}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Wedding Wire
                 </Link>
