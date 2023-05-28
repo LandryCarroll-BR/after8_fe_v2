@@ -79,14 +79,16 @@ const GET_PAGE_DATA = `
 `
 
 async function getPageTemplateData(uri: string) {
-  const { data } = await fetchAPI(GET_PAGE_DATA, {
+  const data = await fetchAPI(GET_PAGE_DATA, {
     variables: { uri },
   })
   return data?.nodeByUri.template.home
 }
 
 export default async function IndexPage() {
-  const { hero, content1, awards, cta } = await getPageTemplateData("/")
+  const data = await getPageTemplateData("/")
+  const { hero, content1, awards, cta } = data
+  console.log({ data, GET_PAGE_DATA })
   return (
     <>
       <section className="container relative flex h-[80vh] flex-col gap-6 pb-8 pt-6 md:py-10">
