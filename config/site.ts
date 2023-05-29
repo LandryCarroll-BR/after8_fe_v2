@@ -11,7 +11,11 @@ export const siteConfig = {
     },
     {
       title: "About",
-      hrif: "/about",
+      href: "/about",
+    },
+    {
+      title: "Contact",
+      href: "/contact",
     },
     {
       title: "Song List",
