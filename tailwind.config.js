@@ -13,6 +13,10 @@ module.exports = {
       },
     },
     extend: {
+      margin: {
+        "1/2": "50%",
+        "1/4": "25%",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
