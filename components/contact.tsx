@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation"
+
 import { fetchAPI } from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -19,37 +21,46 @@ const SUBMIT_FORM = `
   }
 `
 
-export function ContactForm() {
+export async function ContactForm() {
   async function onSubmit(formData: FormData) {
     "use server"
     const first = formData.get("first-name")
     const last = formData.get("last-name")
     const email = formData.get("email")
     const message = formData.get("message")
-    fetchAPI(SUBMIT_FORM, {
-      variables: {
-        databaseId: 1,
-        fieldValues: [
-          {
-            id: 1,
-            nameValues: {
-              first,
-              last,
+
+    try {
+      fetchAPI(SUBMIT_FORM, {
+        variables: {
+          databaseId: 1,
+          fieldValues: [
+            {
+              id: 1,
+              nameValues: {
+                first,
+                last,
+              },
             },
-          },
-          {
-            id: 2,
-            emailValues: {
-              value: email,
+            {
+              id: 2,
+              emailValues: {
+                value: email,
+              },
             },
-          },
-          {
-            id: 4,
-            value: message,
-          },
-        ],
-      },
-    })
+            {
+              id: 4,
+              value: message,
+            },
+          ],
+        },
+      })
+
+      redirect("/")
+    } catch {
+      alert(
+        "Looks like something went wrong. Please try contacting us again later!"
+      )
+    }
   }
 
   return (
