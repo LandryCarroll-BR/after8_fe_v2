@@ -11,22 +11,20 @@ export const columns: ColumnDef<event>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Title" className="" />
     ),
-    cell: ({ row }) => (
-      <div className=" truncate">{row.getValue("summary")}</div>
-    ),
+    cell: ({ row }) => <div className="w-36">{row.getValue("summary")}</div>,
     enableSorting: true,
     enableHiding: false,
+    enableColumnFilter: true,
   },
   {
     accessorKey: "location",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Location" className="" />
     ),
-    cell: ({ row }) => (
-      <div className=" truncate">{row.getValue("location")}</div>
-    ),
+    cell: ({ row }) => <div className="w-48">{row.getValue("location")}</div>,
     enableSorting: true,
     enableHiding: true,
+    enableColumnFilter: true,
   },
 
   {
@@ -37,10 +35,11 @@ export const columns: ColumnDef<event>[] = [
     cell: ({ row }) => {
       if (row.getValue("start")) {
         const startTime = new Date(row.getValue("start")).toLocaleString()
-        return <div className="truncate">{startTime}</div>
+        return <div className="w-48">{startTime}</div>
       }
     },
-    enableSorting: false,
+    enableSorting: true,
     enableHiding: true,
+    enableColumnFilter: true,
   },
 ]

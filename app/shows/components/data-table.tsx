@@ -48,6 +48,11 @@ export function DataTable<TData, TValue>({
   const table = useReactTable({
     data,
     columns,
+    initialState: {
+      pagination: {
+        pageSize: 5,
+      },
+    },
     state: {
       sorting,
       columnVisibility,
@@ -98,7 +103,7 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id} className="">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
