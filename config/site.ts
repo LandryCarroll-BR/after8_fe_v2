@@ -10,6 +10,10 @@ export const siteConfig = {
       href: "/",
     },
     {
+      title: "About",
+      hrif: "/about",
+    },
+    {
       title: "Song List",
       href: "/songs",
     },
