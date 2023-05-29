@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { google } from "googleapis"
 
 import { fetchAPI } from "@/lib/api"
@@ -92,8 +93,20 @@ export default async function ShowsPage() {
   ]
 
   return (
-    <section className="container">
-      <div className="flex items-start justify-center gap-6">
+    <section className="container my-16">
+      <h1 className="mb-8 text-center  text-5xl font-bold">Upcoming Shows</h1>
+      <p className="mx-auto mb-6 max-w-md text-center">
+        Check out when our and where our next show is going to be. If you have
+        any questions feel free to{" "}
+        <Link
+          href={"/contact"}
+          className="font-bold text-primary hover:underline"
+        >
+          contact us
+        </Link>
+        .
+      </p>
+      <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:items-start">
         <DataTable data={events} columns={columns} />
 
         <Events events={events} />
