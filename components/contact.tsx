@@ -21,7 +21,7 @@ const SUBMIT_FORM = `
   }
 `
 
-export async function ContactForm() {
+export function ContactForm() {
   async function onSubmit(formData: FormData) {
     "use server"
     const first = formData.get("first-name")
