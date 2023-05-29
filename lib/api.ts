@@ -1,4 +1,7 @@
-const API_URL = process.env.WORDPRESS_API_URL
+let API_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://after8music.local/graphql"
+    : process.env.WORDPRESS_API_URL
 
 export async function fetchAPI(
   query = "",
