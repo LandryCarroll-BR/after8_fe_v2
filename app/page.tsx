@@ -100,7 +100,7 @@ export default async function IndexPage() {
           </h1>
         </div>
         <div className="flex flex-col items-end justify-end gap-4 md:flex-row">
-          <Link href={"#"} className={buttonVariants({ size: "xl" })}>
+          <Link href={"/contact"} className={buttonVariants({ size: "xl" })}>
             {hero.cta.title}
           </Link>
         </div>
@@ -163,7 +163,7 @@ export default async function IndexPage() {
                 curating memories with newlyweds, corporate parties, and
                 socialites of all kinds.
               </p>
-              <Link href={"#"} className={buttonVariants({ size: "xl" })}>
+              <Link href={"/about"} className={buttonVariants({ size: "xl" })}>
                 About Us
               </Link>
             </div>
@@ -216,7 +216,12 @@ export default async function IndexPage() {
               </p>
               <Link
                 href={"/songs"}
-                className={buttonVariants({ size: "xl", variant: "outline" })}
+                className={buttonVariants({
+                  size: "xl",
+                  variant: "outline",
+                  className:
+                    "hover:border-primary hover:bg-primary hover:text-primary-foreground",
+                })}
               >
                 Our Song List
               </Link>
@@ -288,8 +293,13 @@ export default async function IndexPage() {
             </h2>
 
             <Link
-              href={"#"}
-              className={buttonVariants({ size: "2xl", variant: "outline" })}
+              href={"/contact"}
+              className={buttonVariants({
+                size: "2xl",
+                variant: "outline",
+                className:
+                  "hover:border-primary hover:bg-primary hover:text-primary-foreground",
+              })}
             >
               {cta.button.title}
             </Link>
