@@ -157,7 +157,7 @@ export default async function IndexPage() {
             <div className="max-w-lg font-sans text-primary">{cta.body}</div>
 
             <Link
-              href={cta.button.url}
+              href={"/contact"}
               className={buttonVariants({
                 size: "2xl",
                 variant: "outline",
