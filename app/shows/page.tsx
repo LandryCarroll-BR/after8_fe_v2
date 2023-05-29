@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { google } from "googleapis"
 
-import { fetchAPI } from "@/lib/api"
+// import { fetchAPI } from "@/lib/api"
 import Events from "@/components/events"
 
 import { columns } from "./components/columns"
@@ -29,46 +29,46 @@ async function getEvents(params: { calendarId: string }) {
   }
 }
 
-const EVENTS_TEMPLATE_FIELDS = `
-  upcomingEvents {
-    featuredEvents {
-      address
-      bgImage {
-        sourceUrl
-      }
-      calendarLink {
-        url
-      }
-      date
-      title
-    }
-  }
-`
+// const EVENTS_TEMPLATE_FIELDS = `
+//   upcomingEvents {
+//     featuredEvents {
+//       address
+//       bgImage {
+//         sourceUrl
+//       }
+//       calendarLink {
+//         url
+//       }
+//       date
+//       title
+//     }
+//   }
+// `
 
-const GET_PAGE_DATA = `
-  query getPageData($uri: String!) {
-    nodeByUri(uri: $uri) {
-      ... on Page {
-        template {
-          ... on Template_UpcomingEvents {
-            ${EVENTS_TEMPLATE_FIELDS}
-          }
-        }
-        content
-      }
-    }
-  }
-`
+// const GET_PAGE_DATA = `
+//   query getPageData($uri: String!) {
+//     nodeByUri(uri: $uri) {
+//       ... on Page {
+//         template {
+//           ... on Template_UpcomingEvents {
+//             ${EVENTS_TEMPLATE_FIELDS}
+//           }
+//         }
+//         content
+//       }
+//     }
+//   }
+// `
 
-async function getPageTemplateData(uri: string) {
-  const data = await fetchAPI(GET_PAGE_DATA, { variables: { uri } })
-  return data?.nodeByUri.template.upcomingEvents
-}
+// async function getPageTemplateData(uri: string) {
+//   const data = await fetchAPI(GET_PAGE_DATA, { variables: { uri } })
+//   return data?.nodeByUri.template.upcomingEvents
+// }
 
 export default async function ShowsPage() {
-  const featuredEvents = getPageTemplateData("/upcoming-events")
+  // const featuredEvents = getPageTemplateData("/upcoming-events")
 
-  console.log({ featuredEvents })
+  // console.log({ featuredEvents })
 
   const res = await getEvents(params)
   const items = res?.data?.items
