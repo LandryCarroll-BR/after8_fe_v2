@@ -48,6 +48,11 @@ export function DataTable<TData, TValue>({
   const table = useReactTable({
     data,
     columns,
+    initialState: {
+      pagination: {
+        pageSize: 5,
+      },
+    },
     state: {
       sorting,
       columnVisibility,
@@ -68,7 +73,7 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="max-w-sm space-y-4 sm:max-w-none">
+    <div className="mx-auto max-w-sm space-y-4 sm:max-w-2xl">
       <DataTableToolbar table={table} />
       <div className="rounded-md border">
         <Table>

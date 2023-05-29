@@ -27,18 +27,11 @@ export default async function SongPage() {
   const songs = await getsongs()
 
   return (
-    <section className="container">
-      <div className="flex h-full flex-1 flex-col space-y-8 py-8">
-        <div className="flex items-center justify-between space-y-2">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight">
-              After 8 Song List
-            </h2>
-            <p className="text-muted-foreground">Updated monthly!</p>
-          </div>
-        </div>
-        <DataTable data={songs} columns={columns} />
-      </div>
+    <section className="container my-16">
+      <h1 className="mb-8 text-center  text-5xl font-bold">After8 Song List</h1>
+      <p className="mx-auto mb-6 max-w-md text-center">Updated Monthly!</p>
+
+      <DataTable data={songs} columns={columns} />
     </section>
   )
 }
