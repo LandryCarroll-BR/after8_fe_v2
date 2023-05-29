@@ -2,6 +2,7 @@ import "@/styles/globals.css"
 import { Metadata } from "next"
 
 import { siteConfig } from "@/config/site"
+import { fetchAPI } from "@/lib/api"
 import { fontCaxton, fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { SiteFooter } from "@/components/site-footer"
@@ -30,11 +31,32 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+const GET_PAGE_DATA = `
+  query getPageData($uri: String!) {
+    nodeByUri(uri: $uri) {
+      ... on Page {
+        seo {
+          fullHead
+        }
+        content
+      }
+    }
+  }
+`
+
+async function getPageTemplateData(uri: string) {
+  const data = await fetchAPI(GET_PAGE_DATA, {
+    variables: { uri },
+  })
+  return data?.nodeByUri.seo
+}
+
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const seo = await getPageTemplateData("/")
   return (
     <>
       <html lang="en" suppressHydrationWarning>
-        <head />
+        <head dangerouslySetInnerHTML={{ __html: seo?.fullHead }} />
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased",

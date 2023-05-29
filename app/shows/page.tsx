@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { google } from "googleapis"
 
-// import { fetchAPI } from "@/lib/api"
 import Events from "@/components/events"
 
 import { columns } from "./components/columns"

@@ -30,7 +30,7 @@ export function ContactForm() {
     const message = formData.get("message")
 
     try {
-      fetchAPI(SUBMIT_FORM, {
+      await fetchAPI(SUBMIT_FORM, {
         variables: {
           databaseId: 1,
           fieldValues: [
@@ -57,7 +57,7 @@ export function ContactForm() {
 
       redirect("/")
     } catch {
-      alert(
+      console.error(
         "Looks like something went wrong. Please try contacting us again later!"
       )
     }
